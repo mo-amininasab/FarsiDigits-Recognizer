@@ -2,7 +2,8 @@
 
 ![](./output.png)
 
-I trained multiple models such as *Gaussian Naive Bayes*, *Logistic Regression*, and *Support Vector Classifier* on [Hoda Dataset](https://github.com/amir-saniyan/HodaDatasetReader) to recognize Farsi digits.\
+A number of models were trained on the [Hoda Dataset](https://github.com/amir-saniyan/HodaDatasetReader) to identify Farsi digits, including *Gaussian Naive Bayes*, *Logistic Regression*, and *Support Vector Classifier (SVC)* models.
+
 Hoda dataset is the first dataset of handwritten Farsi digits that has been developed during an MSc. project in Tarbiat Modarres University entitled: Recognizing Farsi Digits and Characters in SANJESH Registration Forms.
 The dataset specifications is as follows:
 
