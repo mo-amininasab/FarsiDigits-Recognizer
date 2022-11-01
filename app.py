@@ -1,12 +1,8 @@
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 from PIL import Image
-import matplotlib.pyplot as plt
-import pandas as pd
 import numpy as np
 import pickle
-
-from sklearn.decomposition import PCA
 
 
 def rgba2grey(image):
@@ -15,7 +11,7 @@ def rgba2grey(image):
   return im
 
 
-@st.cache
+# @st.cache
 def load_model(filename):
   with open(filename, 'rb') as file:
     model = pickle.load(file)
@@ -29,17 +25,17 @@ def main():
   st.text('Draw a Farsi number: ')
 
   DRAWING_MODE = 'freedraw'
-  BG_COLOR = 'white'
-  stroke_width = st.sidebar.slider("Stroke width: ", 1, 25, 5)
+  BG_COLOR = 'black'
+  stroke_width = st.sidebar.slider("Stroke width: ", 1, 25, 2)
 
-  canvas_result = st_canvas(
-      stroke_width=stroke_width,
-      background_color=BG_COLOR,
-      update_streamlit=True,
-      height=32,
-      width=32,
-      drawing_mode=DRAWING_MODE,
-  )
+  canvas_result = st_canvas(stroke_color='white',
+                            stroke_width=stroke_width,
+                            background_color=BG_COLOR,
+                            update_streamlit=True,
+                            height=32,
+                            width=32,
+                            drawing_mode=DRAWING_MODE,
+                            initial_drawing=None)
 
   data = canvas_result.image_data
 
@@ -47,10 +43,9 @@ def main():
 
   if data is not None:
     data = rgba2grey(data)
-
-    # pca = PCA()
-    # PC_digits = pca.fit_transform(X_train) # TODO
-    # model.predict(data)
+    data = data.flatten()
+    pred = model.predict([data])
+    st.text(pred)
 
 
 if __name__ == '__main__':
